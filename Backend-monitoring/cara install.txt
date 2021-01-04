@@ -1,0 +1,5 @@
+sudo cp visitor-update.sh /usr/bin/backend-monitor.sh
+sudo chmod +x /usr/bin/backend-monitor.sh
+
+sudo cp visitor-update.service /etc/systemd/system/backend-monitor.service
+sudo chmod 644 /etc/systemd/system/backend-monitor.service
