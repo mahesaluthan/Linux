@@ -1,0 +1,9 @@
+[Unit]
+Description=detect-backdoor service.
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /usr/bin/detect-backdoor.sh
+
+[Install]
+WantedBy=multi-user.target

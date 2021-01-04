@@ -1,0 +1,5 @@
+sudo cp visitor-update.sh /usr/bin/detect-backdoor.sh
+sudo chmod +x /usr/bin/detect-backdoor.sh
+
+sudo cp visitor-update.service /etc/systemd/system/detect-backdoor.service
+sudo chmod 644 /etc/systemd/system/detect-backdoor.service
