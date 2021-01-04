@@ -1,0 +1,41 @@
+#run in background 
+your-commands > /dev/null 2>&1 &
+
+#error changelog 
+sudo truncate -s 0 /var/lib/ubuntu-release-upgrader/release-upgrade-available
+
+#docker user mod
+sudo usermod -aG docker your-user
+
+#ALPINE change time zone
+apk add -U tzdata
+cp /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
+
+#DEBIAN change time zone
+dpkg-reconfigure tzdata
+ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+
+#Fix read only 
+sudo fsck.ext4 -f /dev/sda1
+
+#delete priodictly 
+find /path/to/your/directory -type f -mtime +7 -exec rm {} \; #change +7 to change to what you needed
+
+-----
+#Send file or directory (delete file that you send and not sending if file or directory exist) with rsync
+rsync -avz --remove-sourcefiles /path/to/your/directory your-user@your-ip(public or private):/path/to/your/directory --ignore-existing
+
+#limit speed transfer
+--bwlimit=50               
+
+#minimal and maximal size
+--min-size=10k    
+--max-size=1gb
+
+#Send file with directly port with rsync
+rsync -v --remove-source-files --rsh='ssh -p your-port' /path/to/your/directory your-user@your-ip(public or private):path/to/your/directory
+-----
+
+#Send with scp directly port
+scp -P your-port /path/to/your/directory your-user@your-ip(public or private):/path/to/your/directory
+
